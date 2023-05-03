@@ -13,7 +13,7 @@ const ChefsProfile = () => {
         })
     }, [])
     return (
-        <div>
+        <div className='grid grid-cols-3 gap-8 mt-20 w-[85%]   mx-auto'>
             {
             
             profile.map(pr => <Profile key={pr.id} pr = {pr}></Profile>)
