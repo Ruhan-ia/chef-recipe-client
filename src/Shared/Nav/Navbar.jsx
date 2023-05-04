@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Navbar = () => {
+    const{user} = useContext(AuthContext)
     return (
         <div>
              <div className="navbar bg-neutral text-neutral-content">
@@ -47,7 +49,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li  className=" font-bold">
-            <Link to='/'>Home</Link>
+            <Link to='/home'>Home</Link>
             </li>
             <li  className=" font-bold">
               <a>About</a>
@@ -58,11 +60,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <p className="me-5 text-4xl">
+         {user && <p className="me-5 text-4xl">
             <BiUserCircle></BiUserCircle>
-          </p>
-          <a className="btn">Login</a>
+          </p>}
+         
         </div>
+       <div>
+       {user ? <Link className='btn'><button className='btn'>Log Out</button></Link> :
+          <Link to='/login' className='btn'><button  className='btn'>Login</button></Link>}
+       </div>
       </div>
         </div>
     );
