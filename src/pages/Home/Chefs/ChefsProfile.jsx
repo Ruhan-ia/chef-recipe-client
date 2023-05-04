@@ -5,7 +5,7 @@ const ChefsProfile = () => {
     const [profile, setProfile] = useState([])
 
     useEffect(() =>{
-        fetch('http://localhost:4000/chef')
+        fetch('https://italian-food-server-ruhan-ia.vercel.app/chef')
         .then(res=>res.json())
         .then(data => setProfile(data))
         .catch(error =>{
