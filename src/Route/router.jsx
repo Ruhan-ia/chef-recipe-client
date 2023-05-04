@@ -7,6 +7,7 @@ import ChefDetails from '../pages/ChefDetails/ChefDetails/ChefDetails';
 import Login from '../pages/Login/Login/Login';
 import LoginLayout from '../layout/LoginLayout';
 import Register from '../pages/Login/Register';
+import PrivateRoutes from './PrivateRoutes';
 
 
 const router = createBrowserRouter([
@@ -51,8 +52,8 @@ const router = createBrowserRouter([
         children:[
             {
                 path:':id',
-                element:<ChefDetails></ChefDetails>,
-                loader:({params}) => fetch(`http://localhost:4000/chef/${params.id}`)
+                element:<PrivateRoutes><ChefDetails></ChefDetails></PrivateRoutes>,
+                loader:({params}) => fetch(`https://italian-food-server-ruhan-ia.vercel.app/chef/${params.id}`)
             }
            
         ]
