@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ChefDetails = () => {
   const details = useLoaderData();
+  const [fav, setFav] = useState(false);
+
+  const handleFav = () => {
+    if (fav == true) {
+        
+      setFav(<div className="toast">
+      <div className="alert alert-info">
+        <div>
+          <span>Add to favorite list.</span>
+        </div>
+      </div>
+    </div>)
+    }
+  };
   console.log(details);
   const { imgUrl, bio, likes, numRecipes, experience, chef, recipes } = details;
   return (
@@ -29,15 +43,31 @@ const ChefDetails = () => {
           <div>
             <div className="card w-96 bg-base-100 shadow-xl">
               <div className="card-body">
-                <h2 className="text-3xl font-bold">Recipe Name: <span className="text-2xl font-semibold">{rp.name}</span> </h2>
+                <h2 className="text-3xl font-bold">
+                  Recipe Name:{" "}
+                  <span className="text-2xl font-semibold">{rp.name}</span>{" "}
+                </h2>
                 <br />
-                {
-                    rp.ingredients.map(li => <ul className="list-disc"> <li>{li}</li></ul> )
-                }
-                <p className="font-semibold"> <span className="text-2xl font-bold">Cooking Method</span>: {rp.cookingMethod}</p>
+                {rp.ingredients.map((li) => (
+                  <ul className="list-disc">
+                    {" "}
+                    <li>{li}</li>
+                  </ul>
+                ))}
+                <p className="font-semibold">
+                  {" "}
+                  <span className="text-2xl font-bold">
+                    Cooking Method
+                  </span>: {rp.cookingMethod}
+                </p>
                 <p>{rp.rating}</p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-outline btn-accent">Favorite</button>
+                  <button
+                    onClick={handleFav} disabled={!fav}
+                    className="btn btn-outline btn-accent"
+                  >
+                    Favorite
+                  </button>
                 </div>
               </div>
             </div>
