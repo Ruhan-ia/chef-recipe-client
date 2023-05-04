@@ -1,5 +1,6 @@
 import React from 'react';
 import { BiUserCircle } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -28,7 +29,7 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li  className=" font-bold text-orange-400">
-                <a>HOME</a>
+                <Link to='/'>Home</Link>
               </li>
               <li  className=" font-bold text-orange-400">
                 <a>ABOUT</a>
@@ -46,7 +47,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li  className=" font-bold">
-              <a>Home</a>
+            <Link to='/'>Home</Link>
             </li>
             <li  className=" font-bold">
               <a>About</a>

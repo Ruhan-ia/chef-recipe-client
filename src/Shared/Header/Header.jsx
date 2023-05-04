@@ -14,10 +14,10 @@ const Header = () => {
      
       <div>
         <h1 className="text-center font-extrabold text-6xl pb-4">WEL<span className="text-fuchsia-800">C</span>O<span className="text-sky-700">M</span><span className="text-white">E</span>  !<span className="text-amber-700">!</span>!</h1>
-        <h1 className="text-center text-5xl  text-teal-500 font-bold">
+        <h1 className="text-center text-5xl  text-teal-500 font-bold italic">
           HERE WE SERVED YOUR CHOICE!!
         </h1> <br />
-        <p className="text-center py-8   text-white font-semibold">
+        <p className="text-center py-8 italic  text-white font-semibold">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
           <br /> Aliquid
           neque perspiciatis asperiores earum nulla soluta maiores dolore sequi

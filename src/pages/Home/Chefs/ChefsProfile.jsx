@@ -20,7 +20,9 @@ const ChefsProfile = () => {
             
             
             }
-                   
+                
+                    
+                  
            
      
         </div>
