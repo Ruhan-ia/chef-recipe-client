@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const ChefDetails = () => {
   const details = useLoaderData();
   const [fav, setFav] = useState(false);
 
   const handleFav = () => {
-    if (fav == true) {
-        
-      setFav(<div className="toast">
-      <div className="alert alert-info">
-        <div>
-          <span>Add to favorite list.</span>
-        </div>
-      </div>
-    </div>)
-    }
-  };
+    setFav(true);
+    toast.success("Add to favorite list");
+  }
+  
+  
+
+  
   console.log(details);
   const { imgUrl, bio, likes, numRecipes, experience, chef, recipes } = details;
   return (
@@ -63,11 +62,14 @@ const ChefDetails = () => {
                 <p>{rp.rating}</p>
                 <div className="card-actions justify-end">
                   <button
-                    onClick={handleFav} disabled={!fav}
+                    onClick={handleFav} disabled={fav}
                     className="btn btn-outline btn-accent"
                   >
                     Favorite
+                  
                   </button>
+                  <ToastContainer />
+                  
                 </div>
               </div>
             </div>

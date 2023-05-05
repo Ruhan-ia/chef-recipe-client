@@ -1,13 +1,18 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
+import { GithubAuthProvider } from "firebase/auth";
 
- export  const AuthContext = createContext(null)
 
- const auth = getAuth(app)
+
+export const AuthContext = createContext(null)
+
+const provider = new GithubAuthProvider();
+const provider2 = new GoogleAuthProvider()
+
+const auth = getAuth(app)
 const AuthProvider = ({children}) => {
 
-  
     const [user, setUser] = useState(null)
     const [loader, setLoader] =useState(true)
 
@@ -20,39 +25,45 @@ const AuthProvider = ({children}) => {
         setLoader(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
-    const profileUpdate = (name, photo) =>{
-        return updateProfile(auth.currentUser, {
-            displayName: name , photoURL:photo
-        })
-       }
 
-    const logOut = () =>{
-        return signOut(auth)
+    const logOut = ()=>{
+        setLoader(true)
+      return  signOut(auth)
+    }
+
+    const gitHub=() =>{
+       return signInWithPopup(auth, provider)
+    }
+
+    const google = () =>{
+        return signInWithPopup(auth, provider2)
     }
 
     useEffect(()=>{
-      const unSubscribe=  onAuthStateChanged(auth,loggedUser =>{
-            console.log(loggedUser)
+        const unsubscribe = onAuthStateChanged(auth, (loggedUser)=>{
             setUser(loggedUser)
             setLoader(false)
         })
+
         return () =>{
-            unSubscribe()
+            unsubscribe()
         }
     }, [])
-    const authInfo = {
+
+    const authInfo ={
             user,
             createUser,
-            logIn, 
-            profileUpdate,
+            logIn,
             loader,
-            logOut
+            logOut,
+            gitHub,
+            google
+            
     }
     return (
-        <AuthContext.Provider value={authInfo} >
+        <AuthContext.Provider value={authInfo}>
             {children}
-            
-        </AuthContext.Provider >
+        </AuthContext.Provider>
     );
 };
 

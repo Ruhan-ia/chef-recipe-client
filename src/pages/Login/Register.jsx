@@ -4,8 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 
 const Register = () => {
-    const { createUser, profileUpdate} = useContext(AuthContext)
-
+  const {createUser, gitHub, google} =useContext(AuthContext)
   
  
     const handleRegister = event =>{
@@ -18,20 +17,34 @@ const Register = () => {
         console.log(email,  password, name, photo)
         createUser(email, password)
         .then(result =>{
-            const loggedUser = result.user
-            console.log(loggedUser)
+          const loggedUser = result.user
+          console.log(loggedUser)
         })
-        .catch(error =>{
-            console.log(error.messages)
-        })
-        
-        profileUpdate(name, photo)
-        .then(()=>{
-            
-        })
-        .catch(error => {
-            console.log(error.messages)
-        })
+      .catch(error =>{
+        console.log(error.message)
+      })
+    }
+
+    const handleGitHub = () =>{
+      gitHub()
+      .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser)
+      })
+      .catch(error =>{
+        console.log(error.message)
+      })
+    }
+
+    const handleGoogle =()=>{
+      google()
+      .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser)
+      })
+      .catch(error =>{
+        console.log(error.message)
+      })
     }
 
     return (
@@ -90,7 +103,9 @@ const Register = () => {
                
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary mb-4">Register</button>
+                <button onClick={handleGitHub} className="mb-4 btn btn-success">Github</button>
+                <button onClick={handleGoogle} className="btn btn-dark">Google</button>
                 Already Have An Account? Please <Link to='/login'> <span className="text-blue-400 font-semibold">Login</span> </Link>
               </div> 
             </form>
