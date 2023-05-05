@@ -4,6 +4,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Login = () => {
   const{logIn} = useContext(AuthContext)
+  const {createUser, gitHub, google} =useContext(AuthContext)
+  
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -29,6 +31,29 @@ const Login = () => {
 
      
     }
+
+    const handleGitHub = () =>{
+      gitHub()
+      .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser)
+      })
+      .catch(error =>{
+        console.log(error.message)
+      })
+    }
+
+    const handleGoogle =()=>{
+      google()
+      .then(result =>{
+        const loggedUser = result.user
+        console.log(loggedUser)
+      })
+      .catch(error =>{
+        console.log(error.message)
+      })
+    }
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -61,7 +86,9 @@ const Login = () => {
              
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary mb-4">Login</button>
+              <button onClick={handleGitHub} className="mb-4 btn btn-success">Github</button>
+                <button onClick={handleGoogle} className="btn btn-dark">Google</button>
               Don't Have An Account? Please <Link to='/register'> <span className="text-blue-400 font-semibold">Register</span> </Link>
             </div> 
           </form>

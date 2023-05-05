@@ -68,7 +68,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user && 
-            <div className="me-5 text-4xl">
+            <div className="me-8 text-4xl">
               <div className="avatar">
                 <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img src="https://i.ibb.co/p1pyJP1/chef-5.jpg" />
@@ -78,15 +78,15 @@ const Navbar = () => {
           }
         </div>
         <div>
-          {user ? (
-            <button onClick={handleLogOut} className="btn">
+          {user ? 
+            <button onClick={handleLogOut} className="btn me-5">
               Log Out
             </button>
-          ) : (
-            <Link to="/login" className="btn">
+          : 
+            <Link to="/login" className="btn me-5">
               <button className="btn">Login</button>
             </Link>
-          )}
+          }
         </div>
       </div>
     </div>
