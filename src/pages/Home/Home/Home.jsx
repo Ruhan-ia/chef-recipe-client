@@ -4,6 +4,8 @@ import food1 from "../../../images/food-1.jpg";
 import food2 from "../../../images/food-2.jpg";
 import food3 from "../../../images/food-3.jpg";
 import food4 from "../../../images/food-4.jpg";
+import LazyLoad from 'react-lazy-load';
+
 
 const Home = () => {
   return (
@@ -13,11 +15,16 @@ const Home = () => {
 
     <div className=" grid lg:grid-cols-3 sm:grid-cols-1 gap-8 mt-20 w-[85%]   mx-auto">
       <div className="card w-96 bg-base-100 shadow-xl">
+      <LazyLoad>
         <div className="avatar">
           <div className="w-auto rounded">
+            
+
             <img src={food1} />
+            
           </div>
         </div>
+        </LazyLoad>
         <div className="card-body">
           <h2 className="card-title">
           NEW!
@@ -28,11 +35,13 @@ const Home = () => {
         </div>
       </div>
       <div className="card w-96 bg-base-100 shadow-xl">
+      <LazyLoad>
         <div className="avatar">
           <div className="w-auto rounded">
             <img src={food2} />
           </div>
         </div>
+        </LazyLoad>
         <div className="card-body">
           <h2 className="card-title">
           NEW!
@@ -43,11 +52,13 @@ const Home = () => {
         </div>
       </div>
       <div className="card w-96 bg-base-100 shadow-xl">
+      <LazyLoad>
         <div className="avatar">
           <div className="w-auto rounded">
             <img src={food3} />
           </div>
         </div>
+        </LazyLoad>
         <div className="card-body">
           <h2 className="card-title">
             NEW!

@@ -62,7 +62,7 @@ const Navbar = () => {
               <a>About</a>
             </li>
             <li className=" font-bold">
-              <a>Blog</a>
+              <Link to='/blog'>Blog</Link>
             </li>
           </ul>
         </div>
